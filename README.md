@@ -6,11 +6,11 @@ Botsponder is a very simple demonstration of a service that handles and responds
 
 To run `botsponder` on its default port, simply call:
 
-    $ lein run -m botsponder.server 
+    $ lein run -m botsponder.service
 
 Otherwise, you may specify a port with `-p`:
 
-    $ lein run -m botsponder.server -p 5555
+    $ lein run -m botsponder.service -p 5555
 
 ## Tests
 

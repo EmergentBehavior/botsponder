@@ -31,9 +31,17 @@
   [["-p" "--port PORT" "port number"
     :default 3000
     :parse-fn #(Integer/parseInt %)
-    :validate [#(< 0 % 0x10000) "must be a number between 0 and 65536"]]])
+    :validate [#(< 0 % 0x10000) "must be a number between 0 and 65536"]]
+   ["-h" "--help" "print the help"
+    :flag true
+    :default false]])
 
 (defn -main
   "Serve the application with http-kit."
   [& args]
-  (run-server app (:port (cli/parse-opts args cli-options))))
+  (let [{:keys [options summary]}
+        (cli/parse-opts args cli-options)]
+    (when (:help options)
+      (println summary)
+      (System/exit 0))
+    (run-server app {:port (:port options)})))
